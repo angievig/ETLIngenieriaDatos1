@@ -1,83 +1,119 @@
-____________________________________________________________________________________
+# Proyecto Ames de Ingeniería de Datos I
 
+Este repositorio es el template del proyecto de la Unidad 4 de **Ingeniería de Datos I**. Cada equipo de cuatro estudiantes debe crear su propio repositorio a partir de este template y utilizarlo para organizar el pipeline, la salida, la validación y la documentación del proyecto.
 
-# Project Template
-This is the template for the ETL assignment in the IInfrati course at the Data Science Master, Universidad Icesi, Cali Colombia
+El proyecto consiste en construir en **Azure Data Factory** un proceso ETL que integra información de un archivo CSV, una base PostgreSQL en Neon y colecciones de MongoDB Atlas. El resultado requerido es `salida.csv`, con una fila por propiedad y los 81 campos establecidos en el enunciado.
 
-This template is based on the template proposed by the [Data Science Working Group] (https://github.com/sfbrigade/data-science-wg) Code for the [San Francisco’s Code initiative](https://github.com/sfbrigade/data-science-wg) 
+## Crear el repositorio del equipo
 
-*Instructions: Edit this template filling in the titles, information, and links! Feel free to stray a bit to suit your project but try to provide the main information for reviews and feedback purposes.*
-## Remove this table after updating your project's information
-____________________________________________________________________________________
+1. Una sola persona del equipo debe abrir el [repositorio template](https://github.com/angievig/ETLIngenieriaDatos1).
+2. Debe seleccionar **Use this template** y luego **Create a new repository**.
+3. Debe elegir el nombre y la visibilidad indicados por la docente.
+4. Debe invitar como colaboradores a los otros tres integrantes.
+5. Cada integrante debe aceptar la invitación y clonar el repositorio con GitHub Desktop.
 
-# Project Name
-This project is a part of the  **Proyecto 1 de Innovación Tecnológica** course in the Applied Artificial Intelligence Master, Universidad Icesi, Cali Colombia. 
+La [guía para usar el repositorio en equipo](docs/GUIA_USO_REPOSITORIO_GITHUB.docx) explica este procedimiento paso a paso.
 
-#### -- Project Status: [Active, On-Hold, Completed]
+## Información del equipo
 
-## Contributing Members
+Después de crear el repositorio, reemplacen esta sección con la información real del equipo.
 
-**Team Leader: [Full Name](https://github.com/[github handle])(@slackHandle)**
-**Instructor: [Full Name](https://github.com/[github handle])(@slackHandle)**
+- **Nombre del equipo:** `[Completar]`
+- **Estado del proyecto:** `[En preparación | En desarrollo | Finalizado]`
 
-#### Other Members:
+| Integrante | Usuario de GitHub |
+|---|---|
+| `[Nombre completo]` | `@[usuario]` |
+| `[Nombre completo]` | `@[usuario]` |
+| `[Nombre completo]` | `@[usuario]` |
+| `[Nombre completo]` | `@[usuario]` |
 
-|Name     |  Email   | 
-|---------|-----------------|
-|[Full Name](https://github.com/[github handle])| @johnDoe        |
-|[Full Name](https://github.com/[github handle]) |     @janeDoe    |
+## Objetivo
 
-## Contact
-* Feel free to contact the team leader or the instructor with any questions or if you are interested in contributing!
+Construir un pipeline ETL en Azure Data Factory que investigue e integre por `PID` las fuentes entregadas, aplique las transformaciones definidas en el enunciado y produzca una salida validable con una fila por propiedad.
 
+El equipo debe ampliar este objetivo en el reporte y relacionarlo con las decisiones de integración, las comprobaciones realizadas y los resultados observados.
 
-## Project Intro/Objective
-The purpose of this project is ________. (Describe the main goals of the project and potential civic impact. Limit to a short paragraph, 3-6 Sentences)
+## Fuentes y tecnologías
 
-### Partner
-This section should be added when there's a partner institution 
-* [Name of Partner organization/Government department etc..]
-* Website for partner
-* Partner contact: [Name of Contact], [slack handle of contact if any]
-* If you do not have a partner leave this section out
+| Componente | Uso en el proyecto |
+|---|---|
+| `sources/AmesProperty.csv` | Fuente de datos en formato CSV |
+| PostgreSQL en Neon | Tablas relacionales del proyecto |
+| MongoDB Atlas | Colecciones `garage`, `pool`, `bsmt` y `misc` |
+| Azure Data Factory | Orquestación e implementación del ETL |
+| Jupyter y Python | Validación de `salida.csv` |
 
-### Methods Used
-* Inferential Statistics
-* Machine Learning
-* Data Visualization
-* Predictive Modeling
-* etc.
+No publiquen credenciales, tokens ni cadenas de conexión de estas plataformas.
 
-### Technologies
-* R 
-* Python
-* D3
-* PostGres, MySql
-* Pandas, jupyter
-* HTML
-* JavaScript
-* etc. 
+## Salida esperada
 
-## Project Description
-(Provide a more detailed overview of the project.  Talk a bit about your data sources and what questions and hypotheses you are exploring. What specific data analysis/visualization and modeling work are you using to solve the problem? What blockers and challenges are you facing?  Feel free to number or bullet point things here)
+El archivo final debe guardarse como `out/salida.csv` y cumplir las reglas del enunciado. Entre las comprobaciones principales se encuentran:
 
-## Getting Started
-Instructions for contributors
-1. Clone this repo (for help see this [tutorial](https://help.github.com/articles/cloning-a-repository/)).
-2. Raw Data is being kept [here](Repo folder containing raw data) within this repo.
+- una fila por propiedad;
+- 81 campos en el orden solicitado;
+- unicidad y cobertura de `PID`;
+- uso consistente de camel case, snake case o kebab case, sin espacios;
+- conservación de `PID`, `MS` y `QC` en mayúsculas;
+- uso de `NA` y `0` como únicos marcadores permitidos para valores ausentes, según corresponda;
+- aplicación y validación de las transformaciones obligatorias.
 
-    *If using offline data mention that and how contributors may obtain the data )*
-    
-3. Data processing/transformation scripts are being kept [here](Repo folder containing data processing scripts/notebooks)
-4. etc...
+Las cifras observadas deben provenir de la ejecución del equipo. No deben copiarse conteos de referencia como si fueran resultados propios.
 
-*If your project is well underway and setup is fairly complicated (ie. requires installation of many packages) create another "setup.md" file and link to it here*  
+## Estructura del repositorio
 
-5. Follow setup [instructions](Link to file)
+| Ruta | Contenido esperado |
+|---|---|
+| `sources/` | Fuentes originales, colecciones y scripts entregados |
+| `pipelines/` | Exportaciones y documentación del pipeline de ADF |
+| `notebooks/` | Notebook de validación y guía de uso |
+| `out/` | `salida.csv` y descripción de la salida final |
+| `docs/` | Guías para el reporte, la presentación y el uso del repositorio |
+| `report.md` | Reporte del proyecto |
+| `README.md` | Presentación general y acceso a los entregables |
 
-## Featured Notebooks/Analysis/Deliverables
-* [Notebook/Markdown/Slide Deck Title](link)
-* [Notebook/Markdown/Slide DeckTitle](link)
-* [Blog Post](link)
+No sobrescriban, renombren ni eliminen las fuentes originales sin una justificación explícita.
 
+## Entregables
 
+- [Reporte del proyecto](report.md)
+- [Documentación del pipeline](pipelines/pipelines.md)
+- Archivo final `out/salida.csv`
+- [Descripción de la salida](out/out.md)
+- [Notebook de validación](notebooks/validar_salida_ames.ipynb)
+- Evidencias utilizadas en el reporte y la presentación
+
+## Guías disponibles
+
+- [Uso del repositorio y trabajo en equipo](docs/GUIA_USO_REPOSITORIO_GITHUB.docx)
+- [Preparación del reporte](docs/GUIA_PREPARACION_REPORTE.md)
+- [Preparación de la presentación](docs/GUIA_PREPARACION_PRESENTACION.md)
+- [Uso del notebook de validación](notebooks/GUIA_USO_VALIDACION_SALIDA.md)
+
+## Trabajo en equipo
+
+Para reducir conflictos durante este primer proyecto:
+
+1. acuerden quién editará cada archivo;
+2. sincronicen el repositorio antes de comenzar;
+3. eviten que dos personas modifiquen simultáneamente el mismo archivo;
+4. revisen los cambios en GitHub Desktop antes de guardarlos;
+5. publiquen los cambios y avisen al equipo cuando terminen.
+
+Cada integrante debe trabajar desde su propia cuenta de GitHub. Los notebooks, documentos, imágenes y otros archivos binarios requieren especial coordinación porque no se combinan fácilmente.
+
+## Seguridad
+
+Nunca incluyan en el repositorio:
+
+- contraseñas o tokens;
+- cadenas de conexión de Neon, MongoDB Atlas o Azure;
+- archivos `.env` con valores reales;
+- capturas de pantalla con información de acceso;
+- rutas personales innecesarias.
+
+Si una credencial se publica accidentalmente, debe cambiarse o revocarse de inmediato. Borrarla del archivo no garantiza que desaparezca del historial.
+
+## Licencia
+
+Consulte el archivo [LICENSE](LICENSE).
